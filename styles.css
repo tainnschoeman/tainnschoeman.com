@@ -137,7 +137,7 @@ body.home .info {
   padding: 2.5rem 4rem 4rem;
   color: var(--blue);
 }
-body.home .label { border-top-color: var(--blue); }
+body.home .label { border-top: 0; }
 
 /* ---------- Portfolio page ---------- */
 
