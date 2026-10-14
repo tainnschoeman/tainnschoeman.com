@@ -99,21 +99,48 @@ a:hover, a:focus-visible { color: var(--pink); }
 .info p.lede { font-size: 1.18rem; line-height: 1.35; letter-spacing: -0.012em; margin-bottom: 1.6rem; }
 .info p:last-child { margin-bottom: 0; }
 
-/* ---------- Home page colours: blue field, pink text, white links ---------- */
+/* ---------- Home page colours ----------
+   Left: a full-height blue ribbon with pink text and white links.
+   Right: white page with the Info text in the same blue. */
 
-body.home { background: var(--blue); color: var(--pink); }
-body.home a,
-body.home .links a.plain,
-body.home .links a.quiet { color: #fff; }
-body.home a:hover,
-body.home a:focus-visible,
-body.home .links a.quiet:hover { color: var(--pink); }
-body.home .hint,
-body.home .quiet { color: var(--pink); }
-body.home .links,
-body.home .label { border-top-color: #fff; }
-body.home .links li { border-bottom-color: rgba(255, 255, 255, 0.35); }
+body.home { background: var(--paper); color: var(--blue); }
+
+body.home .page {
+  grid-template-columns: 19rem minmax(0, 1fr);
+  column-gap: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body.home .side {
+  background: var(--blue);
+  color: var(--pink);
+  padding: 1.25rem 2rem 3rem;
+}
+body.home .ribbon-title {
+  display: block;
+  margin-bottom: 1.25rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+body.home .side a,
+body.home .side .links a.plain,
+body.home .side .links a.quiet { color: #fff; }
+body.home .side a:hover,
+body.home .side a:focus-visible,
+body.home .side .links a.quiet:hover { color: var(--pink); }
+body.home .side .hint,
+body.home .side .quiet { color: var(--pink); }
+body.home .side .links { border-top-color: #fff; }
+body.home .side .links li { border-bottom-color: rgba(255, 255, 255, 0.35); }
 body.home .headshot { outline: 1px solid rgba(255, 255, 255, 0.35); }
+
+body.home .info {
+  max-width: 46rem;
+  padding: 3.6rem 4rem 4rem;
+  color: var(--blue);
+}
+body.home .label { border-top-color: var(--blue); }
 
 /* ---------- Portfolio page ---------- */
 
@@ -145,6 +172,9 @@ body.home .headshot { outline: 1px solid rgba(255, 255, 255, 0.35); }
 @media (max-width: 760px) {
   .site-header { padding: 1rem 1rem 0; }
   .page { grid-template-columns: 1fr; row-gap: 2.5rem; padding: 1.75rem 1rem 3rem; }
+  body.home .page { grid-template-columns: 1fr; row-gap: 0; padding: 0; }
+  body.home .side { padding: 1rem 1rem 2rem; }
+  body.home .info { padding: 2rem 1rem 3rem; }
   .portfolio { padding: 1.25rem 1rem 2rem; }
   .stage img { max-height: 70vh; }
   .controls .quiet { display: none; }
