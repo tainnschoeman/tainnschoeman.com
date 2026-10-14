@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio - tainn schoeman</title>
+  <meta name="description" content="Tainn Schoeman - architecture portfolio 2024-2026, viewable as a slideshow.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="./">Tainn Schoeman</a>
+    <nav>
+      <a href="./">&larr; Back</a>
+      <a href="assets/Tainn_Schoeman_Portfolio.pdf" download>Download PDF</a>
+    </nav>
+  </header>
+
+  <main class="portfolio">
+    <h1 class="name">Portfolio</h1>
+
+    <div id="slideshow" aria-roledescription="carousel" aria-label="Portfolio slideshow">
+      <div class="stage">
+        <img id="slide" alt="Portfolio slide 1 of 52" decoding="async">
+      </div>
+      <div class="controls">
+        <button type="button" id="prev" aria-label="Previous slide">&larr;</button>
+        <span id="counter" class="counter" aria-live="polite">1 / 52</span>
+        <button type="button" id="next" aria-label="Next slide">&rarr;</button>
+        <span class="spacer"></span>
+        <span class="quiet">Arrow keys, click the slide, or swipe</span>
+        <button type="button" id="fullscreen" aria-label="Toggle fullscreen" title="Fullscreen">&#x26F6;</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="slideshow.js"></script>
+</body>
+</html>

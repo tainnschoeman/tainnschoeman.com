@@ -1,0 +1,134 @@
+/* tainnschoeman.com
+   Layout follows the original site: a narrow column (portrait, name, links) beside the Info text.
+   Type is borrowed from the reference template: one grotesque sans, an uppercase tightly
+   tracked headline, small bold labels, a larger opening paragraph, and hairline rules. */
+
+@font-face {
+  font-family: "Inter";
+  src: url("assets/fonts/inter-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --pink: #ff00fb;
+  --ink: #111;
+  --muted: #6b6b6b;
+  --rule: #d9d9d9;
+  --field: #f7f7f7;
+  --paper: #fff;
+  --font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover, a:focus-visible { color: var(--pink); }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; }
+.skip:focus { left: 0.5rem; top: 0.5rem; z-index: 10; }
+
+/* ---------- Header ---------- */
+
+.site-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 1.25rem 2rem 0;
+  font-size: 0.8rem;
+}
+.site-header a { text-decoration: none; }
+.site-header nav { display: flex; gap: 1.25rem; }
+
+/* ---------- Home page ---------- */
+
+.page {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 38rem);
+  column-gap: 4rem;
+  padding: 2.5rem 2rem 4rem;
+}
+
+.headshot { display: block; width: 9.5rem; height: 9.5rem; object-fit: cover; }
+
+/* The template headline: uppercase, medium weight, tight tracking, tight leading. */
+.name {
+  margin: 1.75rem 0 1.5rem;
+  color: var(--pink);
+  font-size: 2.1rem;
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+/* The template label/value rows: small text between hairline rules. */
+.links { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
+.links li { padding: 0.75rem 0; border-bottom: 1px solid var(--rule); font-size: 0.82rem; }
+.links a { font-weight: 600; }
+.links a.plain { font-weight: 400; color: var(--pink); text-decoration: none; overflow-wrap: anywhere; }
+.links a.plain:hover { text-decoration: underline; }
+.links a.quiet { font-weight: 400; text-decoration: none; }
+.links a.quiet:hover { color: var(--pink); }
+.hint { color: var(--pink); }
+.quiet { color: var(--muted); }
+
+/* The template section label: small and bold, over a black rule. */
+.label {
+  margin: 0 0 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ink);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.info p { margin: 0 0 1.1rem; font-size: 0.9rem; }
+/* The template opening paragraph: a size up, tighter tracking. */
+.info p.lede { font-size: 1.18rem; line-height: 1.35; letter-spacing: -0.012em; margin-bottom: 1.6rem; }
+.info p:last-child { margin-bottom: 0; }
+
+/* ---------- Portfolio page ---------- */
+
+.portfolio { padding: 1.5rem 2rem 2rem; }
+.portfolio .name { margin: 0 0 1.25rem; }
+
+.stage { display: grid; place-items: center; background: var(--field); }
+.stage img { display: block; max-width: 100%; max-height: calc(100vh - 13rem); cursor: e-resize; user-select: none; }
+
+.controls { display: flex; align-items: center; gap: 0.75rem; padding-top: 0.9rem; font-size: 0.8rem; }
+.controls button {
+  font: inherit; cursor: pointer;
+  border: 1px solid var(--ink); background: #fff; color: var(--ink);
+  width: 2.2rem; height: 2.2rem; border-radius: 50%;
+  display: grid; place-items: center;
+}
+.controls button:hover { background: var(--pink); border-color: var(--pink); color: #fff; }
+.controls .counter { min-width: 4.5rem; text-align: center; font-variant-numeric: tabular-nums; }
+.controls .spacer { flex: 1; }
+
+#slideshow:fullscreen { background: #000; padding: 1rem; display: flex; flex-direction: column; justify-content: center; }
+#slideshow:fullscreen .stage { background: #000; flex: 1; }
+#slideshow:fullscreen .stage img { max-height: calc(100vh - 5rem); }
+#slideshow:fullscreen .controls { color: #fff; }
+#slideshow:fullscreen .quiet { color: #bbb; }
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 760px) {
+  .site-header { padding: 1rem 1rem 0; }
+  .page { grid-template-columns: 1fr; row-gap: 2.5rem; padding: 1.75rem 1rem 3rem; }
+  .portfolio { padding: 1.25rem 1rem 2rem; }
+  .stage img { max-height: 70vh; }
+  .controls .quiet { display: none; }
+}
