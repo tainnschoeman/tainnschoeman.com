@@ -105,18 +105,23 @@ a:hover, a:focus-visible { color: var(--pink); }
 
 body.home { background: var(--paper); color: var(--blue); }
 
+/* One grid row: the ribbon in column 1; the photo and the Info text share column 2.
+   The photo hugs the ribbon's edge at the top; the Info text is centred in the white area. */
 body.home .page {
   grid-template-columns: 19rem minmax(0, 1fr);
+  grid-template-rows: auto;
   column-gap: 0;
   padding: 0;
   min-height: 100vh;
 }
 
 body.home .side {
+  grid-column: 1; grid-row: 1;
   background: var(--blue);
   color: var(--pink);
   padding: 2.5rem 2rem 3rem;
 }
+body.home .side .name { margin-top: 0; }
 body.home .side a,
 body.home .side .links a.plain,
 body.home .side .links a.quiet { color: #fff; }
@@ -125,19 +130,42 @@ body.home .side a:focus-visible,
 body.home .side .links a.quiet:hover { color: var(--pink); }
 body.home .side .hint,
 body.home .side .quiet { color: var(--pink); }
-body.home .side .links { border-top-color: #fff; }
-body.home .side .links li { border-bottom-color: rgba(255, 255, 255, 0.35); }
-body.home .headshot { outline: 1px solid rgba(255, 255, 255, 0.35); }
+body.home .side .links,
+body.home .side .links li { border: 0; }
+body.home .side .links li { padding: 0.45rem 0; }
 
-/* Desktop: the Info column sits centred in the white area; the text stays left-aligned. */
+body.home .headshot {
+  grid-column: 2; grid-row: 1;
+  justify-self: start; align-self: start;
+  margin-top: 2.5rem;
+}
+
+/* The text column is 38rem; centred, it clears the photo on any screen 1264px or wider. */
 body.home .info {
+  grid-column: 2; grid-row: 1;
   justify-self: center;
   width: 100%;
-  max-width: 46rem;
-  padding: 2.5rem 4rem 4rem;
+  max-width: 38rem;
+  padding: 2.5rem 0 4rem;
   color: var(--blue);
 }
-body.home .label { border-top: 0; }
+body.home .label { border-top: 0; padding-top: 0; }
+
+/* Smaller laptops: not enough room to centre, so the text starts just past the photo. */
+@media (min-width: 1024px) and (max-width: 1263px) {
+  body.home .info { justify-self: start; margin-left: 12rem; margin-right: 2.5rem; width: auto; }
+}
+
+/* Tablets and phones: ribbon on top, the photo directly beneath it, then the Info text. */
+@media (max-width: 1023px) {
+  body.home .page { grid-template-columns: 1fr; }
+  body.home .side,
+  body.home .headshot,
+  body.home .info { grid-column: 1; grid-row: auto; }
+  body.home .side { padding: 1.5rem 1.25rem 1.75rem; }
+  body.home .headshot { margin-top: 0; }
+  body.home .info { justify-self: start; max-width: 38rem; padding: 2rem 1.25rem 3rem; }
+}
 
 /* ---------- Portfolio page ---------- */
 
@@ -197,9 +225,9 @@ html.viewer-open { overflow: hidden; }
 @media (max-width: 760px) {
   .site-header { padding: 1rem 1rem 0; }
   .page { grid-template-columns: 1fr; row-gap: 2.5rem; padding: 1.75rem 1rem 3rem; }
-  body.home .page { grid-template-columns: 1fr; row-gap: 0; padding: 0; }
-  body.home .side { padding: 1rem 1rem 2rem; }
-  body.home .info { padding: 2rem 1rem 3rem; }
+  body.home .page { padding: 0; row-gap: 0; }
+  body.home .side { padding: 1.25rem 1rem 1.5rem; }
+  body.home .info { padding: 1.75rem 1rem 3rem; }
   .portfolio { padding: 1.25rem 1rem 2rem; }
   .stage img { max-height: 70vh; }
   .controls .quiet { display: none; }
