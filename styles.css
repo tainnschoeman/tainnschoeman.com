@@ -13,6 +13,7 @@
 
 :root {
   --pink: #ff00fb;
+  --blue: #0000ff; /* the blue of the portfolio slides */
   --ink: #111;
   --muted: #6b6b6b;
   --rule: #d9d9d9;
@@ -98,6 +99,22 @@ a:hover, a:focus-visible { color: var(--pink); }
 .info p.lede { font-size: 1.18rem; line-height: 1.35; letter-spacing: -0.012em; margin-bottom: 1.6rem; }
 .info p:last-child { margin-bottom: 0; }
 
+/* ---------- Home page colours: blue field, pink text, white links ---------- */
+
+body.home { background: var(--blue); color: var(--pink); }
+body.home a,
+body.home .links a.plain,
+body.home .links a.quiet { color: #fff; }
+body.home a:hover,
+body.home a:focus-visible,
+body.home .links a.quiet:hover { color: var(--pink); }
+body.home .hint,
+body.home .quiet { color: var(--pink); }
+body.home .links,
+body.home .label { border-top-color: #fff; }
+body.home .links li { border-bottom-color: rgba(255, 255, 255, 0.35); }
+body.home .headshot { outline: 1px solid rgba(255, 255, 255, 0.35); }
+
 /* ---------- Portfolio page ---------- */
 
 .portfolio { padding: 1.5rem 2rem 2rem; }
@@ -106,7 +123,7 @@ a:hover, a:focus-visible { color: var(--pink); }
 .stage { display: grid; place-items: center; background: var(--field); }
 .stage img { display: block; max-width: 100%; max-height: calc(100vh - 13rem); cursor: e-resize; user-select: none; }
 
-.controls { display: flex; align-items: center; gap: 0.75rem; padding-top: 0.9rem; font-size: 0.8rem; }
+.controls { display: flex; justify-content: flex-end; align-items: center; gap: 0.75rem; padding-top: 0.9rem; font-size: 0.8rem; }
 .controls button {
   font: inherit; cursor: pointer;
   border: 1px solid var(--ink); background: #fff; color: var(--ink);

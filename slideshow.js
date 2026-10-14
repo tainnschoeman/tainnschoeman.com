@@ -1,11 +1,11 @@
 // Portfolio slideshow. The slides are pre-rendered JPEGs in assets/slides/ (slide-01.jpg ...),
 // so nothing is fetched until a slide is needed, and the neighbours are preloaded so a step
-// never shows a blank frame.
+// never shows a blank frame. There are no on-screen arrows or page number: visitors move
+// through it by clicking the slide, with the arrow keys, or by swiping.
 (function () {
   var TOTAL = 52;
   var root = document.getElementById("slideshow");
   var img = document.getElementById("slide");
-  var counter = document.getElementById("counter");
   var current = clamp(parseInt(location.hash.slice(1), 10) || 1);
 
   function clamp(n) { return Math.min(TOTAL, Math.max(1, n)); }
@@ -15,15 +15,12 @@
     current = clamp(n);
     img.src = src(current);
     img.alt = "Portfolio slide " + current + " of " + TOTAL;
-    counter.textContent = current + " / " + TOTAL;
     history.replaceState(null, "", "#" + current);
     [current + 1, current - 1].forEach(function (k) {
       if (k >= 1 && k <= TOTAL) { new Image().src = src(k); }
     });
   }
 
-  document.getElementById("prev").addEventListener("click", function () { show(current - 1); });
-  document.getElementById("next").addEventListener("click", function () { show(current + 1); });
   img.addEventListener("click", function () { show(current + 1); });
 
   document.addEventListener("keydown", function (e) {
